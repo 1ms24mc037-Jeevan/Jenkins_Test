@@ -1,0 +1,24 @@
+pipeline {
+  agent any
+    stages {
+      stage('checkout'){
+        steps{
+          git branch : 'main',url:'https://github.com/1ms24mc037-Jeevan/Jenkins_Test'
+        }
+    }
+    stage('Run python script'){
+      steps{
+        echo 'Running python program...'
+        sh 'python3 helloworld.py'
+      }
+  }
+}
+post{
+  success{
+    echo 'python script excecuted successfully'
+  }
+  failure{
+    echo 'build failed'
+  }
+}
+}
